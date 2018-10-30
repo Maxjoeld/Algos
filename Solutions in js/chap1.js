@@ -212,6 +212,24 @@ var urlify = function(str, length) {
 // console.log(oneAway('pale', 'bale'));
 // console.log(oneAway('pale', 'bake'));
 
+// function strComp(str) {
+//   let result = str[0];
+//   let currStreak = str[0];
+//   let count = 0;
+//   str.split('').forEach((char) => {
+//     if(char === currStreak){
+//       count++;
+//     }
+//     else {
+//       result += count += char; 
+//       count = 1; 
+//       currStreak = char
+//     }
+//   });
+//   result += count;
+//   return result.length < str.length ? result : str;
+// }
+
 // String Compression: Implement a method to perform basic string 
 // compression using the counts of repeated characters. For example, 
 // the string aabcccccaaa would become a2blc5a3. 
@@ -221,66 +239,32 @@ var urlify = function(str, length) {
 // only uppercase and lowercase letters (a - z).
 // Hints:#92, #110
 
+// ''
 function strComp(str) {
-  let result = str[0];
-  let currStreak = str[0];
-  let count = 0;
-  str.split('').forEach((char) => {
-    if(char === currStreak){
-      count++;
+  let streak = ''; 
+  let result = '';
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    let nextChar = str[i + 1];
+    if (char === nextChar) {
+      streak += char;
+    } else {
+      streak += char;
+      result += streak[0] + streak.length;
+      streak = '';
     }
-    else {
-      result += count += char; 
-      count = 1; 
-      currStreak = char
-    }
-  });
-  result += count;
-  return result.length < str.length ? result : str;
+  }
+  return result.length > str.length ? str : result;
 }
 
-// console.log(strComp('aabcccccaaa'));
+console.log(strComp('aabcccccaaa'));
 
 // Rotate Matrix: Given an image represented by an NxN matrix, 
 // where each pixel in the image is 4 bytes, write a method to 
 // rotate the image by 90 degrees. Can you do this in place?
 // Hints:#51, #100
 
-var rotateMatrix = function(matrix) {
-  let edge = matrix.length - 1;
 
-  let movePixels = function(row, col) {
-    // starts at m[row][col]
-    // moves to m[col][edge - row]
-    let fromRow;
-    let fromCol;
-    let fromPixel;
-
-    // first transformation
-    let toRow = row; // 0
-    let toCol = col; // 1
-    let toPixel = matrix[row][col];
-
-    // Do rotational transformation 4 times
-    for (let i = 0; i < 4; i++) {
-      fromRow = toRow;
-      fromCol = toCol;
-      toRow = fromCol;
-      toCol = edge - fromRow;
-
-      fromPixel = toPixel;
-      toPixel = matrix[toRow][toCol];
-      matrix[toRow][toCol] = fromPixel;
-    }
-  };
-
-  for (let i = 0; i < matrix.length / 2; i++) {
-    for (let j = i; j < edge - i; j++) {
-      console.log(i, j);
-      movePixels(i, j);
-    }
-  }
-};
 
 /* TEST */
 let testMatrix = [
@@ -290,15 +274,21 @@ let testMatrix = [
 [1, 0, 0, 1],
 ];
 
+function rotateMatrix(arr) {
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    let outter = arr[i];
+    let rowSet = [];
+    for (let j = 0; j < outter.length; j++) {
+      let ele = arr[j][i];
+      rowSet.push(ele);
+    }
+    result.push(rowSet);
+  }
+  return result;
+}
+
 // console.log('before:');
-// console.log(testMatrix[0]);
-// console.log(testMatrix[1]);
-// console.log(testMatrix[2]);
-// console.log(testMatrix[3]);
-
-// rotateMatrix(testMatrix);
-
-// console.log('after:');
 // console.log(testMatrix[0]);
 // console.log(testMatrix[1]);
 // console.log(testMatrix[2]);
@@ -311,22 +301,13 @@ let arr =
     [0, 0, 1, 2],
     [1, 0, 0, 1],
   ];
+// console.log(rotateMatrix(testMatrix));
 
-
-
-function rotateArr(arr) {
-  let result = [];
-  for (let i = 0; i < arr.length; i++) {
-    let outer = arr[i];
-    let newRow = [];
-    for (let j = 0; j < outer.length; j++) {
-      let ele = arr[j][i];
-      newRow.push(ele);
-    }
-    result.push(newRow);
-  }
-  return result;
-}
+// console.log('after:');
+// console.log(testMatrix[0]);
+// console.log(testMatrix[1]);
+// console.log(testMatrix[2]);
+// console.log(testMatrix[3]);
 
 
 // console.log(rotateArr(arr))
@@ -337,21 +318,25 @@ function rotateArr(arr) {
 // its entire row and column are set to 0.
 
 function zeroMatrix(matrix) {
-  const cols = [];
-  const rows = [];
-  matrix.forEach((e,i) => {
-    e.forEach((v,j) => {
-      if (v === 0){
-        cols.push(j);
-        rows.push(i)
+  let col = [];
+  let rows = [];
+
+  matrix.forEach((row, j) => {
+    row.forEach((column, i) => {
+      if (column === 0) {
+        col.push(i);
+        rows.push(j)
       }
     })
   });
-  rows.forEach(e => matrix[e] = Array(matrix[0].length).fill(0));
-  matrix.forEach((e,i) => cols.forEach(v => matrix[i][v] = 0));
+  rows.forEach(ele => matrix[ele].fill(0))
+  matrix.forEach((ele, i) => {
+    col.forEach((row) =>{
+      matrix[i][row] = 0;
+    })
+  })
   return matrix;
 }
-
 
 var matrix = [
   [1, 1, 1, 0],
@@ -362,7 +347,7 @@ var matrix = [
   [1, 1, 1, 1]
 ];
 
-// console.log(zeroMatrix(matrix));
+console.log(zeroMatrix(matrix));
 
 
 // String Rotation: Assumeyou have a method isSubstrin gwhich checks if one word 
