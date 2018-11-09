@@ -375,3 +375,26 @@ var stringRotation = function(string1, string2) {
 // console.log(stringRotation('waterbottle', 'erbottlewat'), true);
 // console.log(stringRotation('waterbottle', 'erbotlewatt'), false);
 // console.log(stringRotation('aaata', 'aataa'), true);
+
+// u get a string, ‘string’ and u have to see if an array has 
+// all the letters in the string [x,d,s,s,t,t,r,i,i,n,d,s,g]
+function checkIf(str, check) {
+  let str = {};
+  let flag = true;
+  str.split('').forEach((ele) => {
+    if (!str[ele]) {
+      str[ele] = 1;
+    } else {
+      str[ele]++;
+    }
+  });
+ check.split('').forEach(ele => {
+   if (!str[ele]) {
+     let flag = false;
+   } else {
+
+   }
+ })
+}
+
+console.log(checkIf('heyimman', ['heyiman']))
