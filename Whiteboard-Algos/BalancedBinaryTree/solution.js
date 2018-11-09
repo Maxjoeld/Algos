@@ -1,7 +1,3 @@
-/* 
-  A recursive solution
-  How would you solve this iteratively?
- */
 const checkBalanced = (rootNode) => {
   // An empty tree is balanced by default
   if (!rootNode) return true;
@@ -15,16 +11,16 @@ const checkBalanced = (rootNode) => {
     if (!node) return 0;
     return 1 + Math.max(maxDepth(node.left), maxDepth(node.right));
   }
-  
+
   return (maxDepth(rootNode) - minDepth(rootNode) === 0);
 };
 
-/* Some console.log tests */
+
 class BinaryTreeNode {
   constructor(value) {
     this.value = value;
-    this.left = null;
     this.right = null;
+    this.left = null;
   }
 
   insertLeft(value) {
@@ -39,10 +35,11 @@ class BinaryTreeNode {
 }
 
 const root = new BinaryTreeNode(5);
-console.log(checkBalanced(root));   // should print true
+console.log(checkBalanced(root)); // should print true
 
 root.insertLeft(10);
-console.log(checkBalanced(root));   // should print false
+console.log({root})
+console.log(checkBalanced(root)); // should print false
 
 root.insertRight(10);
-console.log(checkBalanced(root));   // should print true;
+console.log(checkBalanced(root)); // should print true;
