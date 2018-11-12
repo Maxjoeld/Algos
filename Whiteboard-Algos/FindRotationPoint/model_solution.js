@@ -10,34 +10,54 @@
   with each iteration. Hence we achieve a runtime of O(log n).
 */
 
+// function findRotationPoint(words) {
+//   const firstWord = words[0];
+
+//   let floorIndex = 0;
+//   let ceilingIndex = words.length - 1;
+
+//   while (floorIndex < ceilingIndex) {
+//     // guess a point halfway between floor and ceiling
+//     let guessIndex = Math.floor(floorIndex + ((ceilingIndex - floorIndex) / 2));
+
+//     // if guess comes after first word or is the first word
+//     if (words[guessIndex] >= firstWord) {
+//       // go right
+//       floorIndex = guessIndex;
+//     } else {
+//       // go left
+//       ceilingIndex = guessIndex;
+//     }
+
+//     // if floor and ceiling have converged
+//     if (floorIndex + 1 === ceilingIndex) {
+//       // between floor and ceiling is where we flipped to the beginning
+//       // so ceiling is alphabetically first
+//       break;
+//     }
+//   }
+//   return ceilingIndex;
+
+// }
+
 function findRotationPoint(words) {
-  const firstWord = words[0];
+  let firstWord = words[0];
+  let floorIdx = 0;
+  let ceilingIdx = words.length - 1;
 
-  let floorIndex = 0;
-  let ceilingIndex = words.length - 1;
+  while (floorIdx < ceilingIdx) {
+    let midPoint = Math.floor(((ceilingIdx + floorIdx)) / 2);
 
-  while (floorIndex < ceilingIndex) {
-    // guess a point halfway between floor and ceiling
-    let guessIndex = Math.floor(floorIndex + ((ceilingIndex - floorIndex) / 2));
-
-    // if guess comes after first word or is the first word
-    if (words[guessIndex] >= firstWord) {
-      // go right
-      floorIndex = guessIndex;
+    if (words[midPoint] >= firstWord) {
+      floorIdx = midPoint;
     } else {
-      // go left
-      ceilingIndex = guessIndex;
+      ceilingIdx = midPoint;
     }
 
-    // if floor and ceiling have converged
-    if (floorIndex + 1 === ceilingIndex) {
-      // between floor and ceiling is where we flipped to the beginning
-      // so ceiling is alphabetically first
-      break;
+    if (floorIdx + 1 === ceilingIdx) {
+      return ceilingIdx;
     }
   }
-
-  return ceilingIndex;
 }
 
 /* Some console.log tests */
