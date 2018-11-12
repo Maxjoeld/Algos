@@ -11,6 +11,28 @@ function recursiveDepthFirstForEach(node, cb) {
   }
 }
 
+/* Iterative implementation */
+function iterativeDepthFirstForEach(node, cb) {
+  // use a stack to achieve the desired order
+  const stack = [];
+  stack.push(node);
+
+  while (stack.length > 0) {
+    const current = stack.pop();
+    // in order to achieve a left-to-right depth-first 
+    // ordering, the right node needs to be pushed
+    // to the stack first
+    if (current.right) {
+      stack.push(current.right);
+    }
+
+    if (current.left) {
+      stack.push(current.left);
+    }
+
+    cb(current.value);
+  }
+}
 
 class BinaryTreeNode {
   constructor(value) {
