@@ -42,6 +42,38 @@ function spiralCopy(inputMatrix) {
   return result;
 }
 
+function spiralCopy(inputMatrix) {
+  let result = [];
+
+  let topRow = 0;
+  let bottomRow = inputMatrix.length - 1;
+  let leftCol = 0;
+  let rightCol = inputMatrix[0].length;
+
+  while (topRow <= bottomRow && leftCol <= rightCol) {
+    for (let i = topRow; i < rightCol; i++) {
+      result.push(inputMatrix[topRow][i]);
+    }
+    topRow++;
+
+    for (let i = topRow; i < rightCol; i++) {
+      result.push(inputMatrix[i][rightCol])
+    }
+    rightCol--;
+
+    for (let i = leftCol; i > rightCol; i++) {
+      result.push(inputMatrix[bottomRow][i])
+    }
+    bottomRow--;
+
+    for (let i = leftCol; i < ) {
+      result.push(inputMatrix[i][leftCol])
+    }
+    leftCol++;
+  }
+  return result;
+}
+
 /* Some simple console.log tests */
 console.log(spiralCopy(
   [[1]]
