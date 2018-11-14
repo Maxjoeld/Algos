@@ -47,13 +47,38 @@ function oneWayFlight(tickets) {
     }
   }
   result.push(flights[null]);
-  let idx = Object.keys(flights).length -2;
-  
-  for (let i = 0; i < idx; i++) {
-    const dest = flights[result[i]]; // LAX -SFO - BHM
+
+  for (let i = 1; i < tickets.length - 1; i++) {
+    const dest = flights[result[i - 1]]; // LAX -SFO - BHM
     result.push(dest);
   };
   return result;
 }
+
+// function oneWayFlight(tickets) {
+//   // use an object to associate sources
+//   // and destinations
+//   const hash = {};
+//   const route = Array(tickets.length - 1);
+
+//   tickets.forEach(ticket => {
+//     // check for the start destination of our trip
+//     if (ticket[0] === null) {
+//       // add it to our `route` array as the first element
+//       route[0] = ticket[1];
+//     }
+//     // hash each ticket with the source as key
+//     // and destination as value
+//     hash[ticket[0]] = ticket[1];
+//   });
+
+//   // loop through our object, grabbing the source's
+//   // associated destination and adding it to our route
+//   for (let i = 1; i < tickets.length - 1; i++) {
+//     route[i] = hash[route[i - 1]];
+//   }
+
+//   return route;
+// }
 
 console.log(oneWayFlight(tickets));
