@@ -6,6 +6,7 @@ function getProductsOfAllIntsExceptAtIndex(intArray) {
     throw new Error('Getting the product of numbers at other indices requires at least 2 numbers');
   }
   
+  // const productsOfAllIntsExceptAtIndex = [1, 2, 14, 42];
   const productsOfAllIntsExceptAtIndex = [];
   
   // For each integer, we find the product of all the integers
@@ -31,9 +32,13 @@ function getProductsOfAllIntsExceptAtIndex(intArray) {
 
 /* Some console.log tests */
 console.log(getProductsOfAllIntsExceptAtIndex(
-  [1, 2, 3, 4, 5]
-));   // should print [120, 60, 40, 30, 24]
+  [2, 7, 3, 4]
+));
+// [84, 24, 56, 42]
+// console.log(getProductsOfAllIntsExceptAtIndex(
+//   [1, 2, 3, 4, 5]
+// ));   // should print [120, 60, 40, 30, 24]
 
-console.log(getProductsOfAllIntsExceptAtIndex(
-  [9, 90]
-));   // sould print [90, 9]
+// console.log(getProductsOfAllIntsExceptAtIndex(
+//   [9, 90]
+// ));   // sould print [90, 9]

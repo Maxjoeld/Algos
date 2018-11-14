@@ -30,7 +30,7 @@
 //   Analyze the time and space complexity of your solution.
 // Naive approach 
 function productExceptMe(arr) {
-  const result = arr.map((exceptNum, i) => {
+  return arr.map((exceptNum, i) => {
     return arr.reduce((num, j, idx) => {
       if (i !== idx) {
         return num * j;
@@ -38,8 +38,22 @@ function productExceptMe(arr) {
       return num;
     })
   });
-  return result;
-}
+};
+
+function productExceptMe(arr) {
+  let hash = {};
+  let product = 1;
+  let target = arr[0];
+
+  arr.forEach((num, i) => {
+    if (i !== arr.indexOf(target)) {
+      num * target;
+    }
+    if (hash[num]) {
+      hash[num]
+    }
+  })
+};
 
 // [1, 7, 3, 4]
 console.log(productExceptMe([1, 7, 3, 4]))
