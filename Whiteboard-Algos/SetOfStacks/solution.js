@@ -63,9 +63,3 @@ stacks.push(3);
 
 // stacks.push(4);
 // console.log(stacks.length); // should print 2
-
-// console.log(stacks.popAt(0)); // should print 3
-
-// console.log(stacks.pop()); // should print 4
-// console.log(stacks.pop()); // should print 8
-// console.log(stacks.length); // should print 1
