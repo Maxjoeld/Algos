@@ -1,3 +1,4 @@
+// The idea is to check whether the tree 's left and right subtrees are mirroring each other, we can use preorder traversal:
 var isSymmetric = function (root) {
   if (!root) { // Sanity check
     return true;
