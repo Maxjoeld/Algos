@@ -37,3 +37,11 @@ var longestValidParentheses = function (s) {
 // Second, loop through the leftovers to find the max distance between them.
 
 // This 2 steps can be combined to form one loop only as shown by other solutions.
+
+//  let addOne = digits[digits.length - 1] + 1;
+//  digits.splice(-1, 1, addOne);
+//  if (digits.length === 1) {
+//    return String(digits).split('').map(a => Number(a));
+//  }
+//  return digits;
+//  };
