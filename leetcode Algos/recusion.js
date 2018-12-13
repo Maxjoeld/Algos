@@ -21,7 +21,7 @@ function minDepth(root) {
   let rBranch = minDepth(null) + 1; // returns 0
   return Math.min(lBranch, rBranch) || Math.max(lBranch, rBranch);
 }
-// first null of nine- second null is the same thing  
+// first null of nine- second null is the same thing
 function minDepth(root) {
   if (!root) {
     return 0
