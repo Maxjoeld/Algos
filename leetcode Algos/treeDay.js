@@ -233,6 +233,7 @@ var hasPathSum = function (root, sum) {
   if (!root.left && !root.right && sum - root.val === 0) { // check leaf
     return true;
   }
+  // this solution works bc Tthis will always return the true value over falsey values 
   return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
 };
 
@@ -282,6 +283,25 @@ function treeLevelBottom(root) {
   };
   return result;
 }
+var hasPathSum = function (root, sum) {
+  if (!root) return false;
+  console.log(root);
+  console.log(sum)
+  // we must explicitly check the tree for leaves
+  // the edge case hasPathSum([1,2], 1), would imagine to be true since 
+  // 1-1 ===0 but the answer must be al eaf and not the head of a tree 
+  if (!root.left && !root.right && sum - root.val === 0) { // check leaf
+    return true;
+  };
+
+  let lBranch = hasPathSum(root.left, sum - root.val);
+  let rBranch = hasPathSum(root.right, sum - root.val);
+  console.log(sum)
+  console.log(root)
+
+  // this solution works bc Tthis will always return the true value over falsey values 
+  return lBranch || rBranch;
+};
 
 
 
