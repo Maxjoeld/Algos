@@ -22,7 +22,7 @@ return first.filter((ele, index) => first.indexOf(ele) === index); // Then dedup
 // }
 
 
-// intersection two 
+// Anything using IndexOf is bruteforce making the solution O(n*m)
 var intersect = function(nums1, nums2) {
   let result = [];
   for (let i = 0; i < nums1.length; i++) {
